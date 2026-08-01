@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PairTrip 〜2人のしおり〜｜ふたりの旅を、ひとつのしおりに。</title>
+<meta name="description" content="カップル・夫婦のための旅行計画アプリ。行きたい場所を選ぶだけで回り方を自動提案。旅のしおり・割り勘・思い出アルバム・記念日まで、ふたりだけで共有できます。iPhone向け・無料。">
+<link rel="canonical" href="https://hsmty1.github.io/pairtrip/">
+<meta name="theme-color" content="#FF6B8A">
+<link rel="icon" href="assets/icon.png">
+<link rel="apple-touch-icon" href="assets/icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PairTrip">
+<meta property="og:title" content="PairTrip 〜2人のしおり〜｜ふたりの旅を、ひとつのしおりに。">
+<meta property="og:description" content="行きたい場所を選ぶだけで回り方を自動提案。旅のしおり・割り勘・思い出アルバムを、ふたりだけで共有。">
+<meta property="og:url" content="https://hsmty1.github.io/pairtrip/">
+<meta property="og:image" content="https://hsmty1.github.io/pairtrip/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PairTrip 〜2人のしおり〜">
+<meta name="twitter:description" content="行きたい場所を選ぶだけで回り方を自動提案。ふたりだけの旅のしおりアプリ。">
+<meta name="twitter:image" content="https://hsmty1.github.io/pairtrip/assets/og.jpg">
+<meta name="apple-itunes-app" content="app-id=6779861255">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "PairTrip 〜2人のしおり〜",
+  "operatingSystem": "iOS 17.0以降",
+  "applicationCategory": "TravelApplication",
+  "url": "https://hsmty1.github.io/pairtrip/",
+  "downloadUrl": "https://apps.apple.com/jp/app/id6779861255",
+  "image": "https://hsmty1.github.io/pairtrip/assets/og.jpg",
+  "description": "カップル・夫婦のための旅行計画アプリ。旅のしおり、旅程の自動提案、割り勘、思い出アルバムをふたりだけで共有できます。",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" }
+}
+</script>
+
+<style>
+:root{
+  --pink:#FF6B8A;
+  --orange:#FFB348;
+  --cream:#FAF3F0;
+  --surface:#FFFFFF;
+  --text:#323232;
+  --muted:#808080;
+  --line:rgba(50,50,50,.10);
+  --shadow:0 8px 30px rgba(255,107,138,.13);
+  --radius:20px;
+  --maxw:1080px;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --pink:#FF7D99;
+    --orange:#FFBF59;
+    --cream:#1E1C1C;
+    --surface:#262323;
+    --text:#F2F2F2;
+    --muted:#A6A6A6;
+    --line:rgba(242,242,242,.12);
+    --shadow:0 8px 30px rgba(0,0,0,.4);
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Helvetica Neue",Arial,sans-serif;
+  background:var(--cream);
+  color:var(--text);
+  line-height:1.8;
+  font-size:16px;
+  letter-spacing:.01em;
+  overflow-x:hidden;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+
+/* ---------- header ---------- */
+.hdr{
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:saturate(180%) blur(14px);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);
+  background:color-mix(in srgb, var(--cream) 82%, transparent);
+  border-bottom:1px solid var(--line);
+}
+.hdr-in{max-width:var(--maxw);margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:12px}
+.hdr-icon{width:34px;height:34px;border-radius:9px;box-shadow:0 2px 8px rgba(0,0,0,.12)}
+.hdr-name{font-weight:700;font-size:16px;letter-spacing:.02em}
+.hdr-cta{margin-left:auto}
+.hdr-cta img{height:34px;width:auto}
+
+/* ---------- hero ---------- */
+.hero{
+  position:relative;
+  background:linear-gradient(155deg,var(--pink) 0%,#FF8A73 48%,var(--orange) 100%);
+  color:#fff;
+  padding:64px 0 0;
+  overflow:hidden;
+}
+.hero::after{
+  content:"";position:absolute;inset:auto 0 -1px 0;height:90px;
+  background:linear-gradient(to bottom,transparent,var(--cream));
+}
+.hero-in{
+  max-width:var(--maxw);margin:0 auto;padding:0 20px 0;
+  display:grid;grid-template-columns:1fr;gap:34px;align-items:center;
+  position:relative;z-index:1;
+}
+.hero h1{
+  font-size:clamp(28px,6.4vw,45px);line-height:1.34;margin:0 0 14px;
+  font-weight:800;letter-spacing:0;text-shadow:0 2px 14px rgba(0,0,0,.10);
+}
+@media(min-width:860px){ .hero h1{font-size:clamp(34px,4.6vw,45px)} }
+.hero p.lead{font-size:clamp(15px,3.6vw,19px);margin:0 0 26px;opacity:.97;font-weight:500}
+.hero .eyebrow{
+  display:inline-block;font-size:13px;font-weight:700;letter-spacing:.08em;
+  background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.35);
+  padding:5px 14px;border-radius:999px;margin-bottom:18px;
+}
+.badge-row{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.badge-row img{height:52px;width:auto;filter:drop-shadow(0 4px 12px rgba(0,0,0,.22))}
+.hero-note{font-size:13px;opacity:.9;margin:14px 0 0}
+.hero-shot{position:relative;text-align:center;margin-top:8px}
+.hero-shot img{
+  width:min(272px,68vw);margin:0 auto;
+  filter:drop-shadow(0 22px 48px rgba(0,0,0,.32));
+}
+@media(min-width:860px){
+  .hero{padding-top:76px}
+  .hero-in{grid-template-columns:1.05fr .95fr;gap:40px;align-items:end;padding-bottom:0}
+  .hero-shot img{width:min(330px,100%)}
+  .hero-txt{padding-bottom:96px}
+}
+
+/* ---------- sections ---------- */
+section{padding:64px 0}
+.sec-head{text-align:center;margin-bottom:40px}
+.sec-head .kicker{
+  display:inline-block;font-size:12px;font-weight:800;letter-spacing:.14em;
+  color:var(--pink);margin-bottom:8px;
+}
+.sec-head h2{font-size:clamp(22px,5.2vw,32px);margin:0 0 10px;font-weight:800;line-height:1.45}
+.sec-head p{margin:0;color:var(--muted);font-size:15px}
+
+/* pains */
+.pains{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:760px){.pains{grid-template-columns:repeat(3,1fr)}}
+.pain{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px 22px;box-shadow:var(--shadow);
+}
+.pain .q{font-size:26px;line-height:1;margin-bottom:12px}
+.pain h3{margin:0 0 8px;font-size:16px;font-weight:700}
+.pain p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.75}
+
+.arrow{
+  text-align:center;font-size:13px;font-weight:700;color:var(--pink);
+  margin:30px 0 0;letter-spacing:.06em;
+}
+
+/* features */
+.feats{display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:700px){.feats{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.feats{grid-template-columns:repeat(3,1fr)}}
+.feat{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:26px 22px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+}
+.feat::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--pink),var(--orange));
+}
+.feat .ico{font-size:28px;line-height:1;margin-bottom:12px}
+.feat h3{margin:0 0 8px;font-size:17px;font-weight:800}
+.feat p{margin:0;color:var(--muted);font-size:14.5px;line-height:1.78}
+.tag{
+  display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;
+  border-radius:999px;padding:3px 10px;margin-top:12px;
+  background:linear-gradient(135deg,var(--pink),var(--orange));color:#fff;
+}
+.tag.free{background:none;border:1px solid var(--line);color:var(--muted)}
+
+/* gallery */
+.gallery{
+  display:flex;gap:16px;overflow-x:auto;padding:6px 20px 22px;
+  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+  scrollbar-width:thin;
+}
+.gallery::-webkit-scrollbar{height:7px}
+.gallery::-webkit-scrollbar-thumb{background:var(--line);border-radius:99px}
+.gallery img{
+  width:230px;flex:0 0 auto;border-radius:16px;scroll-snap-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,.14);
+}
+.gallery-wrap{max-width:var(--maxw);margin:0 auto}
+
+/* plans */
+.plan-tbl-wrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow)}
+table{border-collapse:separate;border-spacing:0;width:100%;min-width:700px;font-size:14px}
+th,td{padding:13px 14px;text-align:center;border-bottom:1px solid var(--line);white-space:nowrap}
+thead th{
+  background:linear-gradient(135deg,var(--pink),var(--orange));color:#fff;
+  font-weight:800;font-size:13.5px;border-bottom:none;
+}
+/* 1列目は横スクロールしても残す */
+th:first-child,tbody th{
+  position:sticky;left:0;z-index:2;
+  background:var(--surface);color:var(--text);
+  text-align:left;font-weight:700;
+  box-shadow:1px 0 0 var(--line);
+}
+thead th:first-child{z-index:3}
+tbody tr:last-child td,tbody tr:last-child th{border-bottom:none}
+.price{font-size:12px;opacity:.92;font-weight:600;display:block;margin-top:2px}
+.scroll-hint{display:none;font-size:12px;color:var(--muted);text-align:right;margin:0 4px 8px}
+@media(max-width:760px){
+  .scroll-hint{display:block}
+  table{min-width:560px;font-size:13px}
+  th,td{padding:11px 10px}
+  th:first-child,tbody th{white-space:normal;width:124px;min-width:124px;font-size:12.5px;line-height:1.5}
+  thead th{font-size:12.5px}
+}
+.yes{color:var(--pink);font-weight:800}
+.no{color:var(--muted);opacity:.6}
+.plan-note{font-size:13px;color:var(--muted);margin:16px 2px 0;line-height:1.85}
+
+/* faq */
+.faq{max-width:760px;margin:0 auto}
+details{
+  background:var(--surface);border:1px solid var(--line);border-radius:14px;
+  padding:16px 20px;margin-bottom:12px;
+}
+details[open]{box-shadow:var(--shadow)}
+summary{
+  cursor:pointer;font-weight:700;font-size:15.5px;list-style:none;
+  display:flex;align-items:center;gap:10px;
+}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"Q";color:var(--pink);font-weight:900;font-size:14px}
+details p{margin:12px 0 2px;color:var(--muted);font-size:14.5px;line-height:1.8}
+
+/* final cta */
+.cta{
+  background:linear-gradient(140deg,var(--pink),var(--orange));color:#fff;
+  border-radius:26px;padding:52px 24px;text-align:center;
+  box-shadow:0 16px 44px rgba(255,107,138,.3);
+}
+.cta h2{margin:0 0 10px;font-size:clamp(21px,5vw,30px);font-weight:800;line-height:1.5}
+.cta p{margin:0 0 26px;opacity:.96;font-size:15px}
+.cta .badge-row{justify-content:center}
+
+/* footer */
+footer{padding:44px 0 56px;text-align:center;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line);margin-top:64px}
+.f-links{display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:center;margin-bottom:18px}
+.f-links a{color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+.f-links a:hover{color:var(--pink)}
+.f-icon{width:44px;height:44px;border-radius:12px;margin:0 auto 14px;box-shadow:0 3px 12px rgba(0,0,0,.14)}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-in">
+    <img class="hdr-icon" src="assets/icon.png" alt="PairTrip アイコン" width="34" height="34">
+    <span class="hdr-name">PairTrip</span>
+    <a class="hdr-cta" href="https://apps.apple.com/jp/app/id6779861255" aria-label="App Store で PairTrip をダウンロード">
+      <img src="assets/appstore-badge-ja.svg" alt="App Store からダウンロード" height="34">
+    </a>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-in">
+    <div class="hero-txt">
+      <span class="eyebrow">カップル・夫婦のための旅行アプリ</span>
+      <h1>ふたりの旅を、<br>ひとつのしおりに。</h1>
+      <p class="lead">
+        行きたい場所を選ぶだけで、回り方を自動で提案。<br>
+        しおりも割り勘も思い出の写真も、ふたりだけで共有できます。
+      </p>
+      <div class="badge-row">
+        <a href="https://apps.apple.com/jp/app/id6779861255" aria-label="App Store で PairTrip をダウンロード">
+          <img src="assets/appstore-badge-ja.svg" alt="App Store からダウンロード" height="52">
+        </a>
+      </div>
+      <p class="hero-note">iPhone・iOS 17.0以降／基本機能は無料・有料プランは1週間無料トライアル付き</p>
+    </div>
+    <div class="hero-shot">
+      <img src="assets/hero-phone.png" alt="PairTrip の旅のしおり画面。日付ごとのタイムラインで当日の流れが一目でわかる" width="662" height="1400" loading="eager">
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">SUCH A PAIN</span>
+      <h2>ふたりの旅行の準備、<br>こんなことありませんか？</h2>
+    </div>
+    <div class="pains">
+      <div class="pain">
+        <div class="q">💬</div>
+        <h3>計画がLINEに流れて消える</h3>
+        <p>「ここ行きたい」と送り合ったお店やスポットが、他のトークに埋もれて結局どこだったか分からなくなる。</p>
+      </div>
+      <div class="pain">
+        <div class="q">🗺️</div>
+        <h3>回る順番を決めるのが大変</h3>
+        <p>行きたい場所は決まったのに、移動時間を調べて順番を組み立てて…で力尽きる。ごはんの時間も考えないといけない。</p>
+      </div>
+      <div class="pain">
+        <div class="q">💸</div>
+        <h3>お金の精算があいまいなまま</h3>
+        <p>どっちがいくら出したか覚えていなくて、「まあいっか」でなんとなく終わってしまう。</p>
+      </div>
+    </div>
+    <p class="arrow">▼ ぜんぶ PairTrip ひとつで。</p>
+  </div>
+</section>
+
+<section style="padding-top:8px">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">FEATURES</span>
+      <h2>できること</h2>
+      <p>ふたりで「同じルーム」に入るだけ。あとはぜんぶ自動で同期されます。</p>
+    </div>
+    <div class="feats">
+      <div class="feat">
+        <div class="ico">💗</div>
+        <h3>行きたいところリスト</h3>
+        <p>気になったお店や場所を、旅行に紐づかない常設リストにストック。「ふたりとも行きたい」に投票し合えるので、行き先選びで揉めません。</p>
+        <span class="tag free">無料で使えます</span>
+      </div>
+      <div class="feat">
+        <div class="ico">📖</div>
+        <h3>旅のしおり</h3>
+        <p>旅行ごとにスケジュールをタイムラインで管理。片方が編集すれば、もう片方の画面にもすぐ反映されます。</p>
+        <span class="tag free">無料で使えます</span>
+      </div>
+      <div class="feat">
+        <div class="ico">✨</div>
+        <h3>旅程を自動で提案</h3>
+        <p>行きたい場所を選ぶだけで回り方を3案作成。移動時間と滞在時間を考えた順路に、昼・夜の食事休憩まで自動で挿入します。「この場所は◯日目」の指定やホテル・出発地の設定もでき、地図でルートを確認できます。</p>
+        <span class="tag">Standard プラン以上</span>
+      </div>
+      <div class="feat">
+        <div class="ico">💴</div>
+        <h3>割り勘・支出管理</h3>
+        <p>旅の出費を記録すると、精算額を自動で計算。どちらがいくら払えばいいか、その場ですぐ分かります。</p>
+        <span class="tag free">無料で使えます</span>
+      </div>
+      <div class="feat">
+        <div class="ico">📸</div>
+        <h3>思い出の写真・動画</h3>
+        <p>旅行ごとに写真や動画をクラウドに保存して、ふたりのアルバムを育てられます。行った場所は「ふたりの思い出マップ」に貯まっていきます。</p>
+        <span class="tag">写真・動画の共有は有料プラン</span>
+      </div>
+      <div class="feat">
+        <div class="ico">🌤️</div>
+        <h3>旅行当日も便利に</h3>
+        <p>旅行日の天気を提案画面に表示。当日は「当日モード」で、いまの予定・次の予定までの時間をリアルタイムに確認できます。</p>
+        <span class="tag free">無料で使えます</span>
+      </div>
+      <div class="feat">
+        <div class="ico">🎂</div>
+        <h3>記念日・誕生日</h3>
+        <p>付き合った日や誕生日を登録しておくと、ホーム画面でカウントダウン。大事な日をうっかり忘れません。</p>
+        <span class="tag free">無料で使えます</span>
+      </div>
+      <div class="feat">
+        <div class="ico">🔒</div>
+        <h3>ふたりだけの空間</h3>
+        <p>招待コードを送った相手だけが参加できる、2人専用のルーム。第三者が入ってくることはありません。</p>
+        <span class="tag free">無料で使えます</span>
+      </div>
+      <div class="feat">
+        <div class="ico">🤝</div>
+        <h3>課金はどちらか一方でOK</h3>
+        <p>有料プランはルームで共有されます。どちらか一方が契約すれば、ふたりとも同じ機能を使えます。</p>
+        <span class="tag free">うれしい仕様</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:8px">
+  <div class="sec-head wrap">
+    <span class="kicker">SCREENSHOTS</span>
+    <h2>画面を見てみる</h2>
+    <p>← 横にスクロールできます →</p>
+  </div>
+  <div class="gallery-wrap">
+    <div class="gallery">
+      <img src="assets/shot-1.jpg" alt="ホーム画面。次の旅行までのカウントダウンと記念日が並ぶ" width="230" height="498" loading="lazy">
+      <img src="assets/shot-2.jpg" alt="旅のしおり。日付ごとのタイムライン表示" width="230" height="498" loading="lazy">
+      <img src="assets/shot-3.jpg" alt="行きたいところリスト" width="230" height="498" loading="lazy">
+      <img src="assets/shot-5.jpg" alt="割り勘・支出管理。自動で精算額を計算" width="230" height="498" loading="lazy">
+      <img src="assets/shot-4.jpg" alt="旅行ごとの写真アルバム" width="230" height="498" loading="lazy">
+      <img src="assets/shot-6.jpg" alt="記念日・誕生日の登録画面" width="230" height="498" loading="lazy">
+      <img src="assets/shot-7.jpg" alt="招待コードでパートナーを招待する画面" width="230" height="498" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:8px">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">PLANS</span>
+      <h2>プラン</h2>
+      <p>まずは無料で。有料プランはすべて1週間の無料トライアル付きです。</p>
+    </div>
+    <p class="scroll-hint">← 横にスクロールできます →</p>
+    <div class="plan-tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Free<span class="price">¥0</span></th>
+            <th>Standard<span class="price">月 ¥480 / 年 ¥4,800</span></th>
+            <th>Premium<span class="price">月 ¥980 / 年 ¥9,800</span></th>
+            <th>VIP<span class="price">月 ¥2,980 / 年 ¥29,800</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>行きたいところリスト</th>
+            <td>20件</td><td class="yes">無制限</td><td class="yes">無制限</td><td class="yes">無制限</td>
+          </tr>
+          <tr>
+            <th>旅のしおり</th>
+            <td class="yes">○</td><td class="yes">○</td><td class="yes">○</td><td class="yes">○</td>
+          </tr>
+          <tr>
+            <th>割り勘・思い出マップ・当日モード</th>
+            <td class="yes">○</td><td class="yes">○</td><td class="yes">○</td><td class="yes">○</td>
+          </tr>
+          <tr>
+            <th>旅程の自動提案</th>
+            <td class="no">—</td><td class="yes">○</td><td class="yes">○</td><td class="yes">○</td>
+          </tr>
+          <tr>
+            <th>しおりの自動作成</th>
+            <td class="no">—</td><td class="no">—</td><td class="yes">1旅行5回</td><td class="yes">1旅行10回</td>
+          </tr>
+          <tr>
+            <th>写真の共有</th>
+            <td class="no">—</td><td>2GB・50枚</td><td>20GB・100枚</td><td class="yes">100GB・無制限</td>
+          </tr>
+          <tr>
+            <th>動画の共有</th>
+            <td class="no">—</td><td class="no">—</td><td>5本・720p</td><td class="yes">無制限・1080p</td>
+          </tr>
+          <tr>
+            <th>広告</th>
+            <td>あり</td><td class="yes">なし</td><td class="yes">なし</td><td class="yes">なし</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="plan-note">
+      ※ 写真の枚数・動画の本数は、1イベント（1旅行）あたりの上限です。容量はルーム全体の合計です。<br>
+      ※ 有料プランはルームで共有されます。どちらか一方が契約すれば、ふたりとも同じ機能をお使いいただけます。<br>
+      ※ 自動更新サブスクリプションです。解約は iPhone の「設定 &gt; Apple ID &gt; サブスクリプション」からいつでも行えます。
+    </p>
+  </div>
+</section>
+
+<section style="padding-top:8px">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">FAQ</span>
+      <h2>よくある質問</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>ふたりで使うには何が必要ですか？</summary>
+        <p>どちらかがルームを作り、表示される招待コードを相手に送るだけです。相手がそのコードを入力すると、ふたりのルームがつながります。相手も PairTrip をインストールしている必要があります。</p>
+      </details>
+      <details>
+        <summary>相手も課金しないといけませんか？</summary>
+        <p>いいえ。有料プランはルームで共有されるので、どちらか一方が契約すれば、ふたりとも同じ機能を使えます。</p>
+      </details>
+      <details>
+        <summary>無料のままでも使えますか？</summary>
+        <p>使えます。行きたいところリスト・旅のしおり・割り勘・思い出マップ・当日モード・記念日は無料でご利用いただけます。旅程の自動提案と写真・動画の共有は有料プランの機能です。</p>
+      </details>
+      <details>
+        <summary>Android版はありますか？</summary>
+        <p>現在は iPhone（iOS 17.0以降）のみの提供です。</p>
+      </details>
+      <details>
+        <summary>カップル以外でも使えますか？</summary>
+        <p>もちろんです。夫婦や友人ペアなど、2人で旅行する組み合わせならどなたでもお使いいただけます。</p>
+      </details>
+      <details>
+        <summary>写真は相手にも見えますか？</summary>
+        <p>はい。同じルームのふたりで共有されます。ルームは招待コードを知っている相手しか参加できないため、第三者に見られることはありません。</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:8px">
+  <div class="wrap">
+    <div class="cta">
+      <h2>次の旅行、<br>しおりから始めてみませんか。</h2>
+      <p>ダウンロードは無料です。</p>
+      <div class="badge-row">
+        <a href="https://apps.apple.com/jp/app/id6779861255" aria-label="App Store で PairTrip をダウンロード">
+          <img src="assets/appstore-badge-ja.svg" alt="App Store からダウンロード" height="56">
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <img class="f-icon" src="assets/icon.png" alt="" width="44" height="44">
+    <div class="f-links">
+      <a href="https://apps.apple.com/jp/app/id6779861255">App Store</a>
+      <a href="https://sites.google.com/view/khappprivacy-policy/%E3%83%9B%E3%83%BC%E3%83%A0">プライバシーポリシー</a>
+      <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/">利用規約（EULA）</a>
+      <a href="https://sites.google.com/view/khappprivacy-policy/%E3%83%9B%E3%83%BC%E3%83%A0">サポート・お問い合わせ</a>
+    </div>
+    <p>PairTrip 〜2人のしおり〜<br>© K.H.App</p>
+  </div>
+</footer>
+
+</body>
+</html>
