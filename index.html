@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>K.H.App｜iPhoneアプリ一覧</title>
-<meta name="description" content="K.H.App が開発している iPhone アプリの一覧。旅行・建築設備・ヘルスケアなど、日々の「ちょっと面倒」を軽くするアプリを作っています。">
+<meta name="description" content="K.H.App が開発している iPhone アプリの一覧。ゼネコン経営シミュレーション「BUILD EMPIRE」のほか、旅行・建築設備・ヘルスケアのアプリを作っています。">
 <link rel="canonical" href="https://hsmty1.github.io/">
 <meta name="theme-color" content="#4A5568">
 <link rel="icon" href="assets/icons/pairtrip.jpg">
@@ -12,7 +12,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="K.H.App">
 <meta property="og:title" content="K.H.App｜iPhoneアプリ一覧">
-<meta property="og:description" content="旅行・建築設備・ヘルスケアなど、日々の「ちょっと面倒」を軽くする iPhone アプリを作っています。">
+<meta property="og:description" content="ゼネコン経営シミュレーション「BUILD EMPIRE」のほか、旅行・建築設備・ヘルスケアの iPhone アプリを作っています。">
 <meta property="og:url" content="https://hsmty1.github.io/">
 <meta property="og:locale" content="ja_JP">
 
@@ -66,6 +66,29 @@ header p{margin:0;color:var(--muted);font-size:15px}
 .featured{border-color:color-mix(in srgb,var(--accent) 40%,transparent)}
 @media(min-width:640px){.featured{grid-column:1 / -1}}
 
+/* 看板にするアプリ。1枚だけ大きく、画面写真まで見せる。 */
+.hero{grid-column:1 / -1;display:block;padding:22px 22px 20px;
+  border-color:color-mix(in srgb,var(--accent) 45%,transparent);
+  background:
+    radial-gradient(120% 90% at 50% 0%, color-mix(in srgb,var(--accent) 12%,transparent), transparent 70%),
+    var(--surface);
+}
+.hero-head{display:flex;gap:18px;align-items:center}
+.hero-head img{width:88px;height:88px;border-radius:20px;flex:0 0 auto}
+.hero h2{font-size:clamp(22px,5vw,30px);margin:0 0 2px;letter-spacing:.02em}
+.hero .tag{margin:0;font-size:14px;font-weight:700;color:var(--text)}
+.hero .lead{margin:14px 0 0;font-size:14px;color:var(--muted);line-height:1.75}
+.hero .shots{display:grid;grid-template-columns:repeat(3,minmax(0,170px));gap:10px;margin:16px 0 0;justify-content:start}
+.hero .shots img{width:100%;height:auto;border-radius:10px;border:1px solid var(--line)}
+.hero .more{font-size:13.5px;margin-top:14px}
+@media(max-width:480px){
+  .hero{padding:18px}
+  .hero-head img{width:68px;height:68px;border-radius:16px}
+  /* 3列だと1枚100pxで何が写っているか読めない。2枚にして大きく見せる。 */
+  .hero .shots{grid-template-columns:repeat(2,1fr);gap:9px}
+  .hero .shots img:nth-child(3){display:none}
+}
+
 footer{padding:40px 0 56px;text-align:center;color:var(--muted);font-size:13px;border-top:1px solid var(--line);margin-top:36px}
 footer a{color:var(--muted)}
 </style>
@@ -74,11 +97,30 @@ footer a{color:var(--muted)}
 
 <header class="wrap">
   <h1>K.H.App</h1>
-  <p>日々の「ちょっと面倒」を軽くする iPhone アプリを作っています。</p>
+  <p>ゲームと、日々の「ちょっと面倒」を軽くする iPhone アプリを作っています。</p>
 </header>
 
 <main class="wrap">
   <div class="grid">
+
+    <a class="card hero" href="https://apps.apple.com/jp/app/id6794272593">
+      <div class="hero-head">
+        <img src="assets/icons/build-empire.jpg" alt="" width="88" height="88">
+        <div>
+          <span class="genre">シミュレーション</span>
+          <h2>BUILD EMPIRE</h2>
+          <p class="tag">町の工務店から世界一のゼネコンへ</p>
+        </div>
+      </div>
+      <p class="lead">入札で仕事を取り、現場を回し、人を育て、株式を上場する。<br>
+        完全ターン制のゼネコン経営シミュレーション。基本プレイは無料です。</p>
+      <div class="shots">
+        <img src="assets/shots/be-home.jpg" alt="自分の街が育っていくホーム画面" width="320" height="661" loading="lazy">
+        <img src="assets/shots/be-site.jpg" alt="現場の運営方針を決める画面" width="320" height="661" loading="lazy">
+        <img src="assets/shots/be-rank.jpg" alt="世界ランキングの画面" width="320" height="661" loading="lazy">
+      </div>
+      <span class="more">App Store で見る →</span>
+    </a>
 
     <a class="card featured" href="pairtrip/">
       <img src="assets/icons/pairtrip.jpg" alt="" width="62" height="62">
