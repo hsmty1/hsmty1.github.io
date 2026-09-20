@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BUILD EMPIRE｜町の工務店から世界一のゼネコンへ</title>
+<meta name="description" content="建設会社を一代で世界最大手へ育てる、完全ターン制の経営シミュレーション。入札で工事を取り、現場を回し、人を育て、株式を上場する。竣工した建物はホームの街に残ります。iPhone向け・基本無料。">
+<link rel="canonical" href="https://hsmty1.github.io/buildempire/">
+<meta name="theme-color" content="#0A121D">
+<link rel="icon" href="assets/icon.png">
+<link rel="apple-touch-icon" href="assets/icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BUILD EMPIRE">
+<meta property="og:title" content="BUILD EMPIRE｜町の工務店から世界一のゼネコンへ">
+<meta property="og:description" content="入札で工事を取り、現場を回し、人を育て、株式を上場する。完全ターン制のゼネコン経営シミュレーション。">
+<meta property="og:url" content="https://hsmty1.github.io/buildempire/">
+<meta property="og:image" content="https://hsmty1.github.io/buildempire/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BUILD EMPIRE">
+<meta name="twitter:description" content="町の工務店から世界一のゼネコンへ。完全ターン制のゼネコン経営シミュレーション。">
+<meta name="twitter:image" content="https://hsmty1.github.io/buildempire/assets/og.jpg">
+<meta name="apple-itunes-app" content="app-id=6794272593">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "BUILD EMPIRE",
+  "operatingSystem": "iOS 15.0以降",
+  "applicationCategory": "GameApplication",
+  "url": "https://hsmty1.github.io/buildempire/",
+  "downloadUrl": "https://apps.apple.com/jp/app/id6794272593",
+  "image": "https://hsmty1.github.io/buildempire/assets/og.jpg",
+  "description": "建設会社を一代で世界最大手へ育てる、完全ターン制の経営シミュレーション。入札・施工・経営・上場までを1ヶ月ずつ進めます。",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" }
+}
+</script>
+
+<style>
+/* ゲーム本体がダークの画面なので、このページも常時ダークで揃える。
+   親サイト（一覧）はライト/ダーク両対応だが、ここだけは世界観を優先する。 */
+:root{
+  --bg:#080E18; --surface:#111E2E; --surface-2:#0C1826;
+  --text:#E8EFF6; --muted:#A9BACB; --dim:#72869C;
+  --line:rgba(120,182,236,.16); --line-2:rgba(120,182,236,.28);
+  --blue:#5AA2E0; --blue-2:#7CBAF0; --amber:#F2A93C; --good:#48BE86;
+  --radius:16px; --maxw:1000px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Helvetica Neue",Arial,sans-serif;
+  line-height:1.85;font-size:16px;-webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--blue-2)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+section{padding:44px 0}
+.sec-head{margin:0 0 22px}
+.sec-head .eyebrow{
+  display:inline-block;font-size:11px;font-weight:800;letter-spacing:.12em;
+  color:var(--blue);border:1px solid var(--line-2);border-radius:999px;padding:2px 12px;margin-bottom:10px;
+}
+h2{font-size:clamp(21px,4.6vw,28px);margin:0 0 6px;letter-spacing:.01em;line-height:1.5}
+.sec-head p{margin:0;color:var(--muted);font-size:14.5px}
+
+/* ── ヒーロー ─────────────────────────────── */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.hero-bg{position:absolute;inset:0;background:url(assets/hero.jpg) center 38% / cover no-repeat;opacity:.55}
+.hero-bg:after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(8,14,24,.55) 0%,rgba(8,14,24,.82) 55%,var(--bg) 100%)}
+.hero-in{position:relative;padding:62px 0 48px;text-align:center}
+.hero img.icon{width:108px;height:108px;border-radius:24px;margin:0 auto 20px;
+  box-shadow:0 10px 40px rgba(0,0,0,.55)}
+.hero h1{font-size:clamp(34px,8.4vw,60px);margin:0 0 8px;font-weight:900;letter-spacing:.04em;line-height:1.15}
+.hero .catch{margin:0 0 6px;font-size:clamp(15px,3.6vw,19px);font-weight:700;color:var(--blue-2)}
+.hero .sub{margin:0 auto;max-width:34em;color:var(--muted);font-size:14.5px;text-wrap:balance}
+.badge{display:inline-block;margin-top:24px}
+.badge img{height:54px;width:auto;display:block}
+.hero .note{margin:12px 0 0;font-size:12.5px;color:var(--dim)}
+
+/* ── 遊び方 ───────────────────────────────── */
+.steps{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:720px){.steps{grid-template-columns:repeat(4,1fr)}}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.step .n{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:12px;font-weight:800;color:var(--amber);letter-spacing:.1em}
+.step h3{margin:4px 0 4px;font-size:16px}
+.step p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.7}
+
+/* ── できること ────────────────────────────── */
+.feats{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:720px){.feats{grid-template-columns:repeat(2,1fr)}}
+.feat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;
+  border-left:3px solid var(--blue)}
+.feat h3{margin:0 0 5px;font-size:16.5px}
+.feat p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.75}
+
+/* ── 画面 ─────────────────────────────────── */
+.shots{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(min-width:720px){.shots{grid-template-columns:repeat(4,1fr)}}
+.shot figure{margin:0}
+.shot img{width:100%;border-radius:12px;border:1px solid var(--line)}
+.shot figcaption{margin-top:7px;font-size:12px;color:var(--dim);text-align:center}
+
+/* ── 料金 ─────────────────────────────────── */
+.plans{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:720px){.plans{grid-template-columns:repeat(2,1fr)}}
+.plan{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px 22px}
+.plan.pro{border-color:var(--line-2);
+  background:radial-gradient(120% 90% at 50% 0%,rgba(242,169,60,.10),transparent 70%),var(--surface)}
+.plan h3{margin:0 0 2px;font-size:18px}
+.plan .price{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:13px;color:var(--amber);margin:0 0 10px}
+.plan ul{margin:0;padding-left:1.15em}
+.plan li{font-size:13.5px;color:var(--muted);margin-bottom:5px;line-height:1.7}
+.plan li b{color:var(--text)}
+
+/* ── よくある質問 ──────────────────────────── */
+details{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;
+  padding:14px 18px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:700;font-size:15px;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary:before{content:"＋ ";color:var(--blue);font-weight:800}
+details[open] summary:before{content:"− "}
+details p{margin:10px 0 0;font-size:13.5px;color:var(--muted);line-height:1.8}
+details p:last-child{margin-bottom:2px}
+
+/* ── 締め ─────────────────────────────────── */
+.cta{text-align:center;border-top:1px solid var(--line);
+  background:radial-gradient(90% 120% at 50% 0%,rgba(90,162,224,.10),transparent 70%)}
+.cta h2{margin-bottom:16px}
+footer{padding:32px 0 52px;text-align:center;color:var(--dim);font-size:13px;border-top:1px solid var(--line)}
+footer a{color:var(--muted)}
+footer .back{display:inline-block;margin-bottom:10px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-in wrap">
+    <img class="icon" src="assets/icon.png" alt="" width="108" height="108">
+    <h1>BUILD EMPIRE</h1>
+    <p class="catch">町の工務店から世界一のゼネコンへ</p>
+    <p class="sub">入札で工事を取り、現場を回し、人を育て、株式を上場する。<br>
+      完全ターン制のゼネコン経営シミュレーションです。</p>
+    <a class="badge" href="https://apps.apple.com/jp/app/id6794272593">
+      <img src="assets/appstore-badge-ja.svg" alt="App Store でダウンロード" height="54">
+    </a>
+    <p class="note">iPhone・iPad対応／iOS 15.0以降／基本プレイ無料</p>
+  </div>
+</header>
+
+<main>
+
+<section class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">あそびかた</span>
+    <h2>ひと月ずつ、会社を大きくしていく</h2>
+    <p>リアルタイムで進むものは何もありません。「次の月へ」を押したときだけ時間が動きます。</p>
+  </div>
+  <div class="steps">
+    <div class="step"><div class="n">01</div><h3>入札する</h3>
+      <p>公告された工事に価格を入れて応札。安くすれば取れますが、利益は薄くなります。</p></div>
+    <div class="step"><div class="n">02</div><h3>現場を動かす</h3>
+      <p>月を進めると工事が進み、出来高に応じて翌月に代金が入ります。所長と人員の配り方が効きます。</p></div>
+    <div class="step"><div class="n">03</div><h3>会社を強くする</h3>
+      <p>部署を育て、人を採り、給与と福利厚生を決める。借入・投資・M&amp;A・海外進出も。</p></div>
+    <div class="step"><div class="n">04</div><h3>頂点を目指す</h3>
+      <p>実績を積んでステージが上がると、扱える工事の格が上がります。目標は世界ランキング1位。</p></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">とくちょう</span>
+    <h2>建てたものが、街に残る</h2>
+  </div>
+  <div class="feats">
+    <div class="feat"><h3>竣工した建物が並ぶ、あなたの街</h3>
+      <p>完成した物件はホーム画面の街にそのままの姿で建ちます。戸建てから超高層ビル、橋、トンネル、空港まで。夜になれば明かりが灯ります。</p></div>
+    <div class="feat"><h3>工事中の姿も、工程どおりに変わる</h3>
+      <p>更地から山留・基礎、躯体、外装、そして竣工へ。橋やトンネル、洋上風力はそれぞれの建ち方をします。クレーンは現場の上で動きます。</p></div>
+    <div class="feat"><h3>入札は、値段だけでは決まらない</h3>
+      <p>技術力・施工実績・経営事項審査・施主との関係が効きます。総合評価方式の工事では、安いだけの札は通りません。</p></div>
+    <div class="feat"><h3>人を大事にすると、会社が回る</h3>
+      <p>週休2日（4週8閉所）にすると原価と工期は増えますが、士気と定着率が上がり、残業の積み重なりによる是正勧告を避けられます。</p></div>
+    <div class="feat"><h3>数字が、ちゃんと合う</h3>
+      <p>出来高払い・売掛・仕掛工事・法定福利費・決算・配当まで。毎月の収支報告書と年度の決算書で、会社の状態を確かめられます。</p></div>
+    <div class="feat"><h3>すきま時間で進む</h3>
+      <p>完全ターン制なので、置いていかれることがありません。1ヶ月ぶんだけ進めて閉じる、という遊び方ができます。</p></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">がめん</span>
+    <h2>画面を見てみる</h2>
+  </div>
+  <div class="shots">
+    <div class="shot"><figure><img src="assets/shot-1.jpg" alt="ホーム画面。竣工した建物が並ぶ街と、会社の数字" width="400" height="826" loading="lazy"><figcaption>ホーム（街と会社の数字）</figcaption></figure></div>
+    <div class="shot"><figure><img src="assets/shot-2.jpg" alt="入札室。施工・設計・特命から選んで応札" width="400" height="826" loading="lazy"><figcaption>入札室</figcaption></figure></div>
+    <div class="shot"><figure><img src="assets/shot-3.jpg" alt="現場画面。運営方針と進行中の現場" width="400" height="826" loading="lazy"><figcaption>現場</figcaption></figure></div>
+    <div class="shot"><figure><img src="assets/shot-4.jpg" alt="経営画面。人事・給与・銀行・M&amp;Aなどのメニュー" width="400" height="826" loading="lazy"><figcaption>経営</figcaption></figure></div>
+    <div class="shot"><figure><img src="assets/shot-5.jpg" alt="世界ランキング。201社の中での順位" width="400" height="826" loading="lazy"><figcaption>世界ランキング</figcaption></figure></div>
+    <div class="shot"><figure><img src="assets/shot-6.jpg" alt="福利厚生。制度ごとに単価と対象人数を決める" width="400" height="826" loading="lazy"><figcaption>給与・福利厚生</figcaption></figure></div>
+    <div class="shot"><figure><img src="assets/shot-7.jpg" alt="上場・増資。自社株のローソク足チャート" width="400" height="826" loading="lazy"><figcaption>上場・増資</figcaption></figure></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">りょうきん</span>
+    <h2>基本無料で、最後まで遊べます</h2>
+    <p>月額はありません。買い切りのプレミアムは、一度のお支払いで以後ずっとお使いいただけます。</p>
+  </div>
+  <div class="plans">
+    <div class="plan">
+      <h3>無料</h3>
+      <p class="price">0円（バナー広告あり）</p>
+      <ul>
+        <li><b>世界一まで到達できます。</b>遊べる範囲に制限はありません</li>
+        <li>入札・施工・人事・部署育成・技術開発・投資開発・M&amp;A・海外進出</li>
+        <li>福利厚生はレベル0〜5で設定します</li>
+      </ul>
+    </div>
+    <div class="plan pro">
+      <h3>プレミアム（やり込みモード）</h3>
+      <p class="price">買い切り／広告なし</p>
+      <ul>
+        <li><b>協力会社</b>：職種ごとの取引先を束ね、専属会・単価交渉・支払条件・職長会で原価と工期を動かす</li>
+        <li><b>現場所長</b>：新米から中堅、ベテランへ。副所長として大型現場で鍛え、中途採用でも集める</li>
+        <li><b>給与と福利厚生</b>：等級別の月給・賞与月数に加え、9つの制度ごとに単価と対象人数を決める</li>
+        <li><b>株式と上場</b>：取引先の株を持ち、会社を上場させて大型の資金調達を行う</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">こまったとき</span>
+    <h2>よくある質問</h2>
+  </div>
+
+  <details>
+    <summary>進行中のデータは消えませんか？</summary>
+    <p>セーブはアプリを閉じた瞬間ではなく、<b>1ヶ月進めるたびに書き込んで</b>います。書き込みは端末のファイルと端末内の保存領域の二重で行い、さらに1世代前の控えを残しています。保存に失敗したときはアプリが画面でお知らせします。</p>
+    <p>それでも進行が失われた場合は、下の「サポート・お問い合わせ」からご連絡ください。</p>
+  </details>
+
+  <details>
+    <summary>機種変更したら引き継げますか？</summary>
+    <p>同じApple IDでiCloudにサインインしていれば、<b>セーブはiCloud経由で同期されます</b>。設定画面に「iCloud同期：有効」と出ていればつながっています。新しい端末では起動直後は空に見えることがあり、数秒待つとセーブが降りてきます。</p>
+  </details>
+
+  <details>
+    <summary>プレミアムは買い直しになりますか？</summary>
+    <p>なりません。同じApple IDであれば、メニューの「ストア」から<b>「購入を復元」</b>を押すと元に戻ります。月額課金ではないので、更新料もかかりません。</p>
+  </details>
+
+  <details>
+    <summary>進行が止まってしまいました</summary>
+    <p>まずアプリを一度終了して開き直してください。それでも直らないときは、<b>お使いの機種・そのとき開いていた画面・押しても反応しないボタン</b>を添えてご連絡いただけると、こちらで同じ状態を作って調べられます。</p>
+    <p>画面の縦が短い端末で一覧が見えにくくなる不具合は、バージョン1.6で直しています。</p>
+  </details>
+
+  <details>
+    <summary>広告は消せますか？</summary>
+    <p>買い切りのプレミアムをご購入いただくと、バナー広告が消えます。無料のままでも、広告が遊びを止めることはありません（動画を見ないと進めない、といった作りにはしていません）。</p>
+  </details>
+
+  <details>
+    <summary>要望を送りたいのですが</summary>
+    <p>ぜひお願いします。これまでのアップデートは、いただいたご意見から作ったものがほとんどです。App Storeのレビューか、下のお問い合わせからお送りください。</p>
+  </details>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2>あなたの手で、建設帝国を。</h2>
+    <a class="badge" href="https://apps.apple.com/jp/app/id6794272593">
+      <img src="assets/appstore-badge-ja.svg" alt="App Store でダウンロード" height="54">
+    </a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="back"><a href="../">← K.H.App のアプリ一覧へ</a></p>
+    <p><a href="https://sites.google.com/view/khappprivacy-policy/%E3%83%9B%E3%83%BC%E3%83%A0">プライバシーポリシー・サポート・お問い合わせ</a></p>
+    <p>© K.H.App</p>
+  </div>
+</footer>
+
+</body>
+</html>
