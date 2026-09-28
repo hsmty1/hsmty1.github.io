@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CITY EMPIRE｜町の不動産屋から世界一の不動産グループへ</title>
+<meta name="description" content="不動産会社を一代で世界一の不動産グループへ育てる、完全ターン制の経営シミュレーション。仕入れ、建て、貸して、いつ売るかを決める。BUILD EMPIRE の第2弾。iPhone向け・基本無料。">
+<link rel="canonical" href="https://hsmty1.github.io/cityempire/">
+<meta name="theme-color" content="#F5F1E6">
+<link rel="icon" href="assets/icon.png">
+<link rel="apple-touch-icon" href="assets/icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="CITY EMPIRE">
+<meta property="og:title" content="CITY EMPIRE｜町の不動産屋から世界一の不動産グループへ">
+<meta property="og:description" content="物件を仕入れ、建て、貸して、いつ売るかを決める。金利と景気の波を読む、完全ターン制の不動産デベロッパー経営シミュレーション。">
+<meta property="og:url" content="https://hsmty1.github.io/cityempire/">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CITY EMPIRE">
+<meta name="twitter:description" content="町の不動産屋から世界一の不動産グループへ。完全ターン制の不動産デベロッパー経営シミュレーション。">
+<meta name="apple-itunes-app" content="app-id=6814046927">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "CITY EMPIRE",
+  "operatingSystem": "iOS 15.0以降",
+  "applicationCategory": "GameApplication",
+  "url": "https://hsmty1.github.io/cityempire/",
+  "downloadUrl": "https://apps.apple.com/app/id6814046927",
+  "description": "不動産会社を一代で世界一の不動産グループへ育てる、完全ターン制の経営シミュレーション。仕入・開発・運営・出口を1ヶ月ずつ進めます。",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" }
+}
+</script>
+
+<style>
+/* ゲーム本体が「明るい紙（生成り＋墨＋朱）」なので、このページも常時ライトで揃える。
+   朱は「所有・契約・判子」の色。塗りつぶしに使わず、線と数字の差し色にとどめる。 */
+:root{
+  --bg:#F5F1E6; --surface:#FBF8F0; --surface-2:#EEE8D8;
+  --text:#23201B; --muted:#5E574A; --dim:#938A78;
+  --line:#DDD5C2; --line-2:#C4B99F;
+  --shu:#C8503C; --shu-soft:rgba(200,80,60,.10); --indigo:#2B4C7E; --pine:#2E6B54;
+  --shadow:0 1px 1px rgba(60,50,30,.06),0 6px 18px rgba(60,50,30,.09);
+  --maxw:1000px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Helvetica Neue",Arial,sans-serif;
+  line-height:1.85;font-size:16px;-webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--indigo)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+section{padding:44px 0}
+.sec-head{margin:0 0 22px}
+.sec-head .eyebrow{
+  display:inline-block;font-size:11px;font-weight:800;letter-spacing:.12em;
+  color:var(--shu);border:1px solid var(--shu);border-radius:999px;padding:2px 12px;margin-bottom:10px;
+}
+h2{font-size:clamp(21px,4.6vw,28px);margin:0 0 6px;letter-spacing:.01em;line-height:1.5}
+.sec-head p{margin:0;color:var(--muted);font-size:14.5px}
+
+/* ── ヒーロー（画像は使わない。地図の方眼を薄く敷く） ── */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line-2);
+  background:
+    linear-gradient(180deg,rgba(245,241,230,0) 0%,var(--bg) 100%),
+    repeating-linear-gradient(0deg,transparent 0 31px,rgba(196,185,159,.35) 31px 32px),
+    repeating-linear-gradient(90deg,transparent 0 31px,rgba(196,185,159,.35) 31px 32px),
+    var(--bg)}
+.hero-in{position:relative;padding:62px 0 48px;text-align:center}
+.hero img.icon{width:108px;height:108px;border-radius:24px;margin:0 auto 20px;box-shadow:var(--shadow)}
+.hero h1{font-size:clamp(34px,8.4vw,60px);margin:0 0 8px;font-weight:900;letter-spacing:.04em;line-height:1.15}
+.hero .catch{margin:0 0 6px;font-size:clamp(15px,3.6vw,19px);font-weight:700;color:var(--shu)}
+.hero .sub{margin:0 auto;max-width:34em;color:var(--muted);font-size:14.5px;text-wrap:balance}
+.badge{display:inline-block;margin-top:24px}
+.badge img{height:54px;width:auto;display:block}
+.hero .note{margin:12px 0 0;font-size:12.5px;color:var(--dim)}
+
+/* ── 遊び方 ── */
+.steps{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:720px){.steps{grid-template-columns:repeat(4,1fr)}}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow)}
+.step .n{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:12px;font-weight:800;color:var(--shu);letter-spacing:.1em}
+.step h3{margin:4px 0 4px;font-size:16px}
+.step p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.7}
+
+/* ── できること ── */
+.feats{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:720px){.feats{grid-template-columns:repeat(2,1fr)}}
+.feat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;
+  border-left:3px solid var(--shu);box-shadow:var(--shadow)}
+.feat h3{margin:0 0 5px;font-size:16.5px}
+.feat p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.75}
+
+/* ── 画面 ── */
+.shots{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media(min-width:720px){.shots{grid-template-columns:repeat(3,1fr)}}
+.shot figure{margin:0}
+.shot img{width:100%;border-radius:12px;border:1px solid var(--line-2);background:var(--surface-2)}
+.shot figcaption{margin-top:7px;font-size:12px;color:var(--dim);text-align:center}
+
+/* ── 料金 ── */
+.plans{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:720px){.plans{grid-template-columns:repeat(2,1fr)}}
+.plan{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:var(--shadow)}
+.plan.pro{border-color:var(--shu);background:radial-gradient(120% 90% at 50% 0%,var(--shu-soft),transparent 70%),var(--surface)}
+.plan h3{margin:0 0 2px;font-size:18px}
+.plan .price{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:13px;color:var(--shu);margin:0 0 10px}
+.plan ul{margin:0;padding-left:1.15em}
+.plan li{font-size:13.5px;color:var(--muted);margin-bottom:5px;line-height:1.7}
+.plan li b{color:var(--text)}
+.plan .foot{margin:10px 0 0;font-size:12.5px;color:var(--dim)}
+
+/* ── よくある質問 ── */
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  padding:14px 18px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:700;font-size:15px;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary:before{content:"＋ ";color:var(--shu);font-weight:800}
+details[open] summary:before{content:"− "}
+details p{margin:10px 0 0;font-size:13.5px;color:var(--muted);line-height:1.8}
+details p:last-child{margin-bottom:2px}
+details b{color:var(--text)}
+
+/* ── 締め ── */
+.cta{text-align:center;border-top:1px solid var(--line-2);
+  background:radial-gradient(90% 120% at 50% 0%,var(--shu-soft),transparent 70%)}
+.cta h2{margin-bottom:16px}
+footer{padding:32px 0 52px;text-align:center;color:var(--dim);font-size:13px;border-top:1px solid var(--line-2)}
+footer a{color:var(--muted)}
+footer .back{display:inline-block;margin-bottom:10px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-in wrap">
+    <img class="icon" src="assets/icon.png" alt="" width="108" height="108">
+    <h1>CITY EMPIRE</h1>
+    <p class="catch">町の不動産屋から、世界一の不動産グループへ</p>
+    <p class="sub">物件を仕入れ、建て、貸して、いつ売るかを決める。<br>
+      BUILD EMPIRE の第2弾、今度は発注する側の経営シミュレーションです。</p>
+    <a class="badge" href="https://apps.apple.com/app/id6814046927">
+      <img src="assets/appstore-badge-ja.svg" alt="App Store でダウンロード" height="54">
+    </a>
+    <p class="note">iPhone・iPad対応／iOS 15.0以降／基本プレイ無料／日本語・English</p>
+  </div>
+</header>
+
+<main>
+
+<section class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">あそびかた</span>
+    <h2>ひと月ずつ、会社を大きくしていく</h2>
+    <p>リアルタイムで進むものは何もありません。「次の月へ」を押したときだけ時間が動きます。</p>
+  </div>
+  <div class="steps">
+    <div class="step"><div class="n">01</div><h3>仕入</h3>
+      <p>市場に出た物件や土地を、売主の事情を読み、交渉して取得します。</p></div>
+    <div class="step"><div class="n">02</div><h3>開発</h3>
+      <p>何を建てるかを決め、施工会社に発注して竣工させます。</p></div>
+    <div class="step"><div class="n">03</div><h3>運営</h3>
+      <p>入居者を募って稼働率を上げ、毎月の賃料収入を積み上げます。</p></div>
+    <div class="step"><div class="n">04</div><h3>出口</h3>
+      <p>売るか、持ち続けるか、ファンドへ組み入れるか。相場を読んで決めます。</p></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">とくちょう</span>
+    <h2>物件の値段は、NOI ÷ キャップレート</h2>
+  </div>
+  <div class="feats">
+    <div class="feat"><h3>指標は一本だけ</h3>
+      <p>物件の価値は「NOI ÷ キャップレート」で決まります。空室を埋めて NOI を上げるのはあなた、キャップレートを決めるのは相場です。</p></div>
+    <div class="feat"><h3>相場は上がりも下がりもする</h3>
+      <p>金利と景気が波を打ち、数年続く「時代の潮流」が用途ごとの評価や建設費を動かします。レバレッジは成長の速さであり、倒産の原因にもなります。</p></div>
+    <div class="feat"><h3>1室から、都心のオフィスまで</h3>
+      <p>中古マンションの1室や中古戸建から、木造アパート、RC共同住宅、物流施設、ホテル、都心オフィスへ。市街地再開発、街区開発、その先には新都市開発が待っています。</p></div>
+    <div class="feat"><h3>売主には、それぞれ事情がある</h3>
+      <p>相続・事業承継・住み替え・遊休地の整理。事情を読んで指値を入れ、値引きを引き出します。</p></div>
+    <div class="feat"><h3>あなたの街が、朱で広がる</h3>
+      <p>持っている物件はホーム画面の街に朱の区画で残ります。隣を買えば朱が広がり、あなたの街ができていきます。</p></div>
+    <div class="feat"><h3>数字が、ちゃんと合う</h3>
+      <p>減価償却・法人税等・キャッシュフローの3区分まで入った収支報告書。課金に関係なく全部見られます。</p></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">がめん</span>
+    <h2>画面を見てみる</h2>
+  </div>
+  <div class="shots">
+    <div class="shot"><figure><img src="assets/shot-1.jpg" alt="ホーム画面。持っている物件が朱の区画で並ぶ街" width="400" height="826" loading="lazy"><figcaption>街</figcaption></figure></div>
+    <div class="shot"><figure><img src="assets/shot-2.jpg" alt="仕入の画面。市場に出た物件と土地" width="400" height="826" loading="lazy"><figcaption>仕入</figcaption></figure></div>
+    <div class="shot"><figure><img src="assets/shot-3.jpg" alt="物件の画面。保有物件の収支と稼働率" width="400" height="826" loading="lazy"><figcaption>物件</figcaption></figure></div>
+    <div class="shot"><figure><img src="assets/shot-4.jpg" alt="経営の画面。人事・銀行・ファンドなどのメニュー" width="400" height="826" loading="lazy"><figcaption>経営</figcaption></figure></div>
+    <div class="shot"><figure><img src="assets/shot-5.jpg" alt="世界ランキングの画面" width="400" height="826" loading="lazy"><figcaption>世界ランキング</figcaption></figure></div>
+    <div class="shot"><figure><img src="assets/shot-6.jpg" alt="月次の収支報告書" width="400" height="826" loading="lazy"><figcaption>収支報告書</figcaption></figure></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">りょうきん</span>
+    <h2>基本無料で、最後まで遊べます</h2>
+    <p>月額はありません。買い切りのプレミアムは、一度のお支払いで以後ずっとお使いいただけます。</p>
+  </div>
+  <div class="plans">
+    <div class="plan">
+      <h3>無料</h3>
+      <p class="price">0円（バナー広告あり）</p>
+      <ul>
+        <li><b>STAGE6・世界一まで到達できます。</b>遊べる範囲に制限はありません</li>
+        <li>「何を買うか・何を建てるか・いくら借りるか・いつ売るか」という本筋の判断はすべて無料</li>
+        <li>収支報告書も、課金に関係なく全部見られます</li>
+      </ul>
+    </div>
+    <div class="plan pro">
+      <h3>プレミアム（やり込みモード）</h3>
+      <p class="price">買い切り／広告なし</p>
+      <ul>
+        <li><b>テナント</b>：区画ごとの募集賃料・フリーレント・入居申込みへの条件返し</li>
+        <li><b>給与</b>：一般社員・主任・課長・部長の月給と賞与の月数を別々に決める</li>
+        <li><b>ファンド</b>：私募ファンドの条件と、REIT の公募の時期と規模を決める</li>
+        <li><b>上場</b>：配当性向・業績予想と株主総会・TOB への備え</li>
+        <li><b>グループ会社・海外</b>：子会社の給与と配当、地域ごとの為替ヘッジ</li>
+      </ul>
+      <p class="foot">有利な物件や有利な融資が出るものではありません。判断をより細かく詰めるための層です。</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="support">
+  <div class="sec-head">
+    <span class="eyebrow">こまったとき</span>
+    <h2>よくある質問</h2>
+  </div>
+
+  <details>
+    <summary>プレミアムは買い直しになりますか？</summary>
+    <p>なりません。同じApple IDであれば、画面上部の <b>⚙ → 設定 →「プレミアム」</b>を開き、<b>「購入を復元する」</b>を押すと元に戻ります。起動のたびに App Store と照らし合わせているので、多くの場合は開くだけで戻ります。月額課金ではないので、更新料もかかりません。</p>
+  </details>
+
+  <details>
+    <summary>機種変更したら引き継げますか？</summary>
+    <p>同じApple IDでiCloudにサインインしていれば、<b>セーブはiCloud経由で新しい端末へ引き継がれます</b>。新しい端末では、起動直後は起業の画面に見えることがあります。<b>会社を作らずに数秒お待ちください。</b>セーブが届くと「iCloud のセーブを取り込んだ」と出て、続きから始まります。</p>
+    <p>iCloudにサインインしていない場合は引き継げません。</p>
+  </details>
+
+  <details>
+    <summary>英語で遊べますか？（English）</summary>
+    <p>はい。最初は端末の言語に合わせて表示されます。切り替えるときは、画面上部の <b>⚙ → 設定 →「言語 / Language」</b>を押してください。日本語と English が切り替わります。セーブは切り替える直前に保存するので、進行は消えません。</p>
+    <p>Yes. The game follows your device language. To switch, tap <b>⚙ → Settings → "言語 / Language"</b>.</p>
+  </details>
+
+  <details>
+    <summary>進行中のデータは消えませんか？</summary>
+    <p>操作するたびに少し遅らせてまとめて書き込み、アプリを閉じる・切り替える瞬間にも必ず書き込んでいます。書き込み先は端末の保存領域で、さらに1世代前の控えを残しています。保存に失敗したときはアプリが画面でお知らせします。</p>
+    <p>それでも進行が失われた場合は、ページ下部の<b>お問い合わせ</b>からご連絡ください。</p>
+  </details>
+
+  <details>
+    <summary>広告は消せますか？</summary>
+    <p>買い切りのプレミアムをご購入いただくと、バナー広告が消えます。動画広告を見て使う機能（仕入の出物の引き直しなど）も、広告なしで使えるようになります。無料のままでも、動画を見ないと進めない、といった作りにはしていません。</p>
+  </details>
+
+  <details>
+    <summary>進行が止まってしまいました</summary>
+    <p>まずアプリを一度終了して開き直してください。それでも直らないときは、<b>お使いの機種・そのとき開いていた画面・押しても反応しないボタン</b>を添えてご連絡いただけると、こちらで同じ状態を作って調べられます。</p>
+  </details>
+
+  <details>
+    <summary>要望を送りたいのですが</summary>
+    <p>ぜひお願いします。App Storeのレビューか、ページ下部の<b>お問い合わせ</b>からお送りください。</p>
+  </details>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2>あなたの手で、不動産帝国を。</h2>
+    <a class="badge" href="https://apps.apple.com/app/id6814046927">
+      <img src="assets/appstore-badge-ja.svg" alt="App Store でダウンロード" height="54">
+    </a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="back"><a href="../">← K.H.App のアプリ一覧へ</a></p>
+    <p><a href="privacy/">プライバシーポリシー</a>（<a href="privacy/en/">English</a>）　|　<a href="mailto:ex241126yr241126@gmail.com">お問い合わせ</a></p>
+    <p>© K.H.App</p>
+  </div>
+</footer>
+
+</body>
+</html>
