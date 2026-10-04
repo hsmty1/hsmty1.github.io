@@ -52,7 +52,7 @@ footer p{color:var(--dim);font-size:13px;margin:0 0 8px}
 
 <header class="wrap">
   <h1>CITY EMPIRE<br>Privacy Policy</h1>
-  <p class="meta">Effective: 29 September 2026</p>
+  <p class="meta">Effective: 29 September 2026 / Revised: 2 October 2026</p>
   <p class="lang"><a href="../">日本語</a>　|　<a href="../../">About CITY EMPIRE</a></p>
 </header>
 
@@ -62,7 +62,7 @@ footer p{color:var(--dim);font-size:13px;margin:0 0 8px}
   <h2>Introduction</h2>
   <p>K.H.App ("the developer") publishes the iOS app <strong>CITY EMPIRE</strong> ("the app"). This policy explains how information is handled in the app. <strong>This page covers this app only</strong>; the developer's other apps each have their own terms.</p>
   <div class="box">
-    <p><strong>In short:</strong> the app never receives anything that identifies you — no name, email address, phone number, postal address or date of birth. Text you type inside the game, such as your company name, is never sent to the developer either. <strong>The developer does not run any usage analytics.</strong></p>
+    <p><strong>In short:</strong> the app never receives anything that identifies you — no name, email address, phone number, postal address or date of birth. Text you type inside the game, such as your company name, is never sent to the developer either. Usage analytics (Firebase Analytics) are collected in a way that does not identify you (section 4).</p>
   </div>
 </section>
 
@@ -102,8 +102,22 @@ footer p{color:var(--dim);font-size:13px;margin:0 0 8px}
 </section>
 
 <section>
-  <h2><span class="n">4</span>Analytics</h2>
-  <p>The app <strong>does not include any analytics SDK</strong>, such as Firebase Analytics. The developer receives no record of which screens you open or how far you have played.</p>
+  <h2><span class="n">4</span>Analytics (Firebase Analytics)</h2>
+  <p>To learn which features are used and where people stop playing — which is how updates get prioritised — the app uses <strong>Firebase Analytics</strong> (Google LLC). These are the only events sent:</p>
+  <table>
+    <tr><th><code>game_start</code></th><td>Started a game (difficulty, founder trait)</td></tr>
+    <tr><th><code>tutorial_done</code></th><td>Finished the first guide</td></tr>
+    <tr><th><code>stage_up</code></th><td>Moved up a stage</td></tr>
+    <tr><th><code>world_top</code></th><td>Became number one in the world</td></tr>
+    <tr><th><code>dev_start</code></th><td>Ordered a development (use, how it is paid for)</td></tr>
+    <tr><th><code>store_view</code></th><td>Opened the purchase screen (where it was opened from)</td></tr>
+    <tr><th><code>purchase</code></th><td>Bought Premium (no amount or card details)</td></tr>
+    <tr><th><code>run_end</code></th><td>A company went bankrupt</td></tr>
+    <tr><th><code>session_end</code></th><td>The screen you were on when you closed the app</td></tr>
+    <tr><th><code>fatal / jserror</code></th><td>An unexpected error occurred (where it happened)</td></tr>
+  </table>
+  <p>Each event also carries your current stage, the in-game month, whether you have Premium, and the difficulty. All of these are <strong>numbers and short fixed words</strong>. The company or property names you type, and the contents of your save, are never sent. They are treated as statistics that do not identify you. Firebase also records an anonymous per-app identifier, device model, OS, country, language and app launches on its own.</p>
+  <p>See also: <a href="https://firebase.google.com/policies/analytics">Firebase and privacy</a></p>
   <p>To report a problem, please email the address at the bottom of this page.</p>
 </section>
 
@@ -129,7 +143,7 @@ footer p{color:var(--dim);font-size:13px;margin:0 0 8px}
 
 <section>
   <h2><span class="n">7</span>Sharing with third parties</h2>
-  <p>Except where required by law, the developer does not share or sell your information to third parties. Google (AdMob) and Apple (iCloud, Game Center, App Store) handle information under their own policies in order to provide those services.</p>
+  <p>Except where required by law, the developer does not share or sell your information to third parties. Google (AdMob, Firebase Analytics) and Apple (iCloud, Game Center, App Store) handle information under their own policies in order to provide those services.</p>
 </section>
 
 <section>

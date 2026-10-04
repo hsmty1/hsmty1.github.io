@@ -53,7 +53,7 @@ footer p{color:var(--dim);font-size:13px;margin:0 0 8px}
 
 <header class="wrap">
   <h1>CITY EMPIRE<br>プライバシーポリシー</h1>
-  <p class="meta">制定日：2026年9月29日</p>
+  <p class="meta">制定日：2026年9月29日／改定日：2026年10月2日</p>
   <p class="lang"><a href="en/">English</a>　|　<a href="../">CITY EMPIRE について</a></p>
 </header>
 
@@ -63,7 +63,7 @@ footer p{color:var(--dim);font-size:13px;margin:0 0 8px}
   <h2>はじめに</h2>
   <p>K.H.App（以下「開発者」）は、iOSアプリ「<strong>CITY EMPIRE</strong>」（以下「本アプリ」）を提供しています。本ポリシーは、本アプリにおける情報の取り扱いを説明するものです。<strong>このページは本アプリ専用です。</strong>開発者の他のアプリには、それぞれの取り扱いがあります。</p>
   <div class="box">
-    <p><strong>要点：</strong>本アプリは、氏名・メールアドレス・電話番号・住所・生年月日といった、<strong>あなたを特定できる情報を一切受け取りません</strong>。会社名など、あなたがゲーム内で入力した文字が開発者に送られることもありません。開発者は<strong>利用状況の計測（アクセス解析）も行っていません</strong>。</p>
+    <p><strong>要点：</strong>本アプリは、氏名・メールアドレス・電話番号・住所・生年月日といった、<strong>あなたを特定できる情報を一切受け取りません</strong>。会社名など、あなたがゲーム内で入力した文字が開発者に送られることもありません。利用状況の計測（Firebase Analytics）は、個人を特定しない形で行っています（4章）。</p>
   </div>
 </section>
 
@@ -103,8 +103,22 @@ footer p{color:var(--dim);font-size:13px;margin:0 0 8px}
 </section>
 
 <section>
-  <h2><span class="n">4</span>利用状況の計測について</h2>
-  <p>本アプリには、Firebase Analytics などの<strong>アクセス解析の仕組みを組み込んでいません</strong>。どの画面を開いたか、どこまで進んだかといった利用状況を、開発者が受け取ることはありません。</p>
+  <h2><span class="n">4</span>利用状況の計測（Firebase Analytics）</h2>
+  <p>どの機能が使われているか、どこで遊ぶのをやめてしまうかを知り、アップデートの判断に役立てるため、<strong>Firebase Analytics</strong>（Google LLC）を利用しています。送信しているのは次の記録だけです。</p>
+  <table>
+    <tr><th><code>game_start</code></th><td>ゲームを始めた（難易度・創業者特性）</td></tr>
+    <tr><th><code>tutorial_done</code></th><td>最初の案内を読み終えた</td></tr>
+    <tr><th><code>stage_up</code></th><td>ステージが上がった</td></tr>
+    <tr><th><code>world_top</code></th><td>世界一になった</td></tr>
+    <tr><th><code>dev_start</code></th><td>開発を発注した（用途・資金の払い方）</td></tr>
+    <tr><th><code>store_view</code></th><td>購入画面を開いた（どこから開いたか）</td></tr>
+    <tr><th><code>purchase</code></th><td>プレミアムを購入した（金額やカード情報は含みません）</td></tr>
+    <tr><th><code>run_end</code></th><td>会社が倒産した</td></tr>
+    <tr><th><code>session_end</code></th><td>アプリを閉じたときに見ていた画面</td></tr>
+    <tr><th><code>fatal / jserror</code></th><td>予期しない不具合が起きた（どこで起きたか）</td></tr>
+  </table>
+  <p>どの記録にも、いまのステージ・ゲーム内の月・プレミアムかどうか・難易度が添えられます。いずれも<strong>数値と、あらかじめ決まった短い語</strong>だけで構成されます。あなたが入力した会社名や物件名、セーブの中身は送信していません。これらは個人を特定しない統計として扱われます。Firebase は別途、アプリごとの匿名の識別子・端末の機種・OS・国・言語・起動の回数を自動で記録します。</p>
+  <p>参考：<a href="https://firebase.google.com/policies/analytics?hl=ja">Firebase とプライバシー</a></p>
   <p>不具合のご報告は、ページ下部のお問い合わせ先へメールでお寄せください。</p>
 </section>
 
@@ -130,7 +144,7 @@ footer p{color:var(--dim);font-size:13px;margin:0 0 8px}
 
 <section>
   <h2><span class="n">7</span>第三者への提供</h2>
-  <p>開発者は、法令にもとづく場合を除き、利用者の情報を第三者に提供・販売することはありません。上記の Google（AdMob）および Apple（iCloud・Game Center・App Store）は、それぞれの役務を提供するために各社のポリシーにもとづいて情報を取り扱います。</p>
+  <p>開発者は、法令にもとづく場合を除き、利用者の情報を第三者に提供・販売することはありません。上記の Google（AdMob・Firebase Analytics）および Apple（iCloud・Game Center・App Store）は、それぞれの役務を提供するために各社のポリシーにもとづいて情報を取り扱います。</p>
 </section>
 
 <section>
