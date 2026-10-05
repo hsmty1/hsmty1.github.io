@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy Policy｜BUILD EMPIRE</title>
-<meta name="description" content="Privacy policy for the iOS app BUILD EMPIRE, covering save data, advertising, analytics and in-app purchases as they actually work in the app.">
+<meta name="description" content="Privacy policy for the iOS and Android app BUILD EMPIRE, covering save data, advertising, analytics and in-app purchases as they actually work in the app.">
 <link rel="canonical" href="https://hsmty1.github.io/buildempire/privacy/en/">
 <meta name="theme-color" content="#0A121D">
 <link rel="icon" href="../../assets/icon.png">
@@ -54,7 +54,7 @@ footer p{color:var(--dim);font-size:13px;margin:0 0 8px}
 
 <header class="wrap">
   <h1>BUILD EMPIRE<br>Privacy Policy</h1>
-  <p class="meta">Last updated: 22 September 2026</p>
+  <p class="meta">Last updated: 6 October 2026</p>
   <p class="lang"><a href="../">日本語</a>　|　<a href="../../">About BUILD EMPIRE</a></p>
 </header>
 
@@ -62,7 +62,7 @@ footer p{color:var(--dim);font-size:13px;margin:0 0 8px}
 
 <section>
   <h2>Introduction</h2>
-  <p>K.H.App ("the developer") publishes the iOS app <strong>BUILD EMPIRE: Construction</strong> ("the app"). This policy explains how information is handled in the app. <strong>This page covers this app only</strong>; the developer's other apps each have their own terms.</p>
+  <p>K.H.App ("the developer") publishes the app <strong>BUILD EMPIRE: Construction</strong> ("the app") for iPhone and iPad (App Store) and for Android (Google Play). This policy explains how information is handled in the app. <strong>Where the iPhone/iPad and Android versions differ, each section says so.</strong> <strong>This page covers this app only</strong>; the developer's other apps each have their own terms.</p>
   <div class="box">
     <p><strong>In short:</strong> the app never receives anything that identifies you — no name, email address, phone number, postal address or date of birth. Text you type inside the game, such as your company name or the names of your buildings, is never sent to the developer either.</p>
   </div>
@@ -83,8 +83,9 @@ footer p{color:var(--dim);font-size:13px;margin:0 0 8px}
 <section>
   <h2><span class="n">2</span>Save data</h2>
   <p>Your save data — company name, cash, sites, headcount and the rest of your progress — is stored <strong>on your device</strong>. There is no developer server, and the developer never receives your saves.</p>
-  <p>So that a new phone or a lost device does not cost you years of progress, a copy is also kept in <strong>Apple's iCloud</strong> (key-value storage). This is Apple's own mechanism, and the copy is <strong>shared only between your own devices signed in to the same Apple ID</strong>. The developer cannot read it. If you are not signed in to iCloud, nothing is synced and your save stays on the device alone.</p>
-  <p><strong>Deleting your data:</strong> deleting a save from the "Save data" screen on the title screen removes <strong>both the file on your device and the copy in iCloud</strong>. Uninstalling the app alone may leave the iCloud copy behind, so delete your saves inside the app first if you want everything gone.</p>
+  <p><strong>iPhone and iPad:</strong> so that a new phone or a lost device does not cost you years of progress, a copy is also kept in <strong>Apple's iCloud</strong> (key-value storage). This is Apple's own mechanism, and the copy is <strong>shared only between your own devices signed in to the same Apple ID</strong>. The developer cannot read it. If you are not signed in to iCloud, nothing is synced and your save stays on the device alone.</p>
+  <p><strong>Android:</strong> saves stay on your device and iCloud is not used. If <strong>Google backup</strong> (Android's own backup) is turned on in your device settings, Android stores the app's data in your Google account and restores it to a new device signed in to the same account. This is Google's own mechanism and the developer cannot read it.</p>
+  <p><strong>Deleting your data:</strong> deleting a save from the "Save data" screen on the title screen removes <strong>both the file on your device and the copy in iCloud</strong>. Uninstalling the app alone may leave the iCloud copy behind, so delete your saves inside the app first if you want everything gone. On Android, a copy left in Google backup can be deleted from your device settings (Google → Backup).</p>
 </section>
 
 <section>
@@ -93,17 +94,19 @@ footer p{color:var(--dim);font-size:13px;margin:0 0 8px}
   <p>To serve these adverts, Google may collect the following from your device. It is handled under Google's own privacy policy, and the developer does not receive any of it individually.</p>
   <ul>
     <li>Device type, OS version, language and country</li>
-    <li>The advertising identifier (IDFA)</li>
+    <li>The advertising identifier (IDFA on iPhone and iPad, the advertising ID on Android)</li>
     <li>Records of adverts shown and tapped</li>
     <li>An approximate region inferred from your IP address</li>
   </ul>
-  <p><strong>Tracking permission:</strong> the app shows the iOS App Tracking Transparency prompt. If you choose "Ask App Not to Track", no tracking using the advertising identifier takes place. <strong>Your choice makes no difference to the game itself.</strong> You can change it at any time under Settings → Privacy &amp; Security → Tracking.</p>
+  <p><strong>Tracking permission (iPhone and iPad):</strong> the app shows the iOS App Tracking Transparency prompt. If you choose "Ask App Not to Track", no tracking using the advertising identifier takes place. <strong>Your choice makes no difference to the game itself.</strong> You can change it at any time under Settings → Privacy &amp; Security → Tracking.</p>
+  <p><strong>Advertising ID (Android):</strong> you can reset or delete the advertising ID at any time under Settings → Privacy → Ads (on some devices, Settings → Google → Ads). Doing so makes no difference to the game.</p>
   <p>Buying the one-off <strong>Premium</strong> upgrade stops adverts being shown at all.</p>
   <p>See also: <a href="https://policies.google.com/privacy">Google Privacy Policy</a> / <a href="https://support.google.com/admob/answer/6128543">AdMob and privacy</a></p>
 </section>
 
 <section>
   <h2><span class="n">4</span>Analytics (Firebase Analytics)</h2>
+  <p><strong>iPhone and iPad only. The Android version does not use Firebase Analytics and sends none of the events below.</strong></p>
   <p>To learn which features are used and where people stop playing — which is how updates get prioritised — the app uses <strong>Firebase Analytics</strong> (Google LLC). These are the only events sent:</p>
   <table>
     <tr><th><code>game_start</code></th><td>A new company was founded (difficulty, founder trait)</td></tr>
@@ -114,6 +117,7 @@ footer p{color:var(--dim);font-size:13px;margin:0 0 8px}
     <tr><th><code>purchase</code></th><td>Premium was purchased (no amount, no payment details)</td></tr>
     <tr><th><code>run_end</code></th><td>How a company ended (world number one, bankruptcy…)</td></tr>
     <tr><th><code>session_end</code></th><td>The screen you were on when you closed the app, and your progress</td></tr>
+    <tr><th><code>fatal</code>, <code>recovered</code>, <code>jserror</code></th><td>Error reports (where processing stopped, a short error message, and the game month), used only to fix bugs</td></tr>
   </table>
   <p>Every one of these consists of <strong>numbers and a few fixed words</strong> (such as the difficulty name). Nothing you typed is included. They are treated as statistics that do not identify you.</p>
   <p>See also: <a href="https://firebase.google.com/policies/analytics">Firebase and privacy</a></p>
@@ -121,18 +125,18 @@ footer p{color:var(--dim);font-size:13px;margin:0 0 8px}
 
 <section>
   <h2><span class="n">5</span>In-app purchase</h2>
-  <p>The app offers a one-off "Premium" upgrade. <strong>All payment is handled by Apple through the App Store.</strong> Card details never reach the developer.</p>
-  <p>Whether you own the upgrade is determined <strong>on your device, using Apple's StoreKit</strong>. No purchase history is stored on any developer server. On the same Apple ID you can restore it from "Restore purchase" in the store menu.</p>
+  <p>The app offers a one-off "Premium" upgrade. <strong>Payment is handled by Apple through the App Store on iPhone and iPad, and by Google Play on Android.</strong> Card details never reach the developer.</p>
+  <p>Whether you own the upgrade is determined <strong>on your device, using each store's own system (Apple's StoreKit, Google Play Billing)</strong>. No purchase history is stored on any developer server. With the same Apple ID or Google account you can restore it from "Restore purchase" in the store menu.</p>
 </section>
 
 <section>
   <h2><span class="n">6</span>Sharing with third parties</h2>
-  <p>Except where required by law, the developer does not share or sell your information to third parties. Google (AdMob, Firebase Analytics) and Apple (iCloud, App Store) handle information under their own policies in order to provide those services.</p>
+  <p>Except where required by law, the developer does not share or sell your information to third parties. Google (AdMob, Firebase Analytics, Google Play, Android backup) and Apple (iCloud, App Store) handle information under their own policies in order to provide those services.</p>
 </section>
 
 <section>
   <h2><span class="n">7</span>Children's privacy</h2>
-  <p>The app is rated 4+. The developer does not knowingly collect personal information from children under 13. If you are a parent or guardian and believe information about your child has been sent, please contact us at the address below and we will act on it promptly.</p>
+  <p>The app is suitable for all ages (rated 4+ on the App Store). The developer does not knowingly collect personal information from children under 13. If you are a parent or guardian and believe information about your child has been sent, please contact us at the address below and we will act on it promptly.</p>
 </section>
 
 <section>
