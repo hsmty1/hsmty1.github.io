@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HOTEL EMPIRE｜一軒のホテルから、世界一のホテルグループへ</title>
+<meta name="description" content="一軒のホテルから世界一のホテルグループを目指す、完全ターン制の経営シミュレーション。客室の値段を決め、人を育て、ブランドを作り、新築で増やす。EMPIRE シリーズ第3弾。iPhone・iPad向け・基本無料。">
+<link rel="canonical" href="https://hsmty1.github.io/hotelempire/">
+<meta name="theme-color" content="#0E0C0B">
+<link rel="icon" href="assets/icon.png">
+<link rel="apple-touch-icon" href="assets/icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HOTEL EMPIRE">
+<meta property="og:title" content="HOTEL EMPIRE｜一軒のホテルから、世界一のホテルグループへ">
+<meta property="og:description" content="客室の値段を決め、人を育て、ブランドを作る。景気と訪日客の波を読む、完全ターン制のホテル経営シミュレーション。">
+<meta property="og:url" content="https://hsmty1.github.io/hotelempire/">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HOTEL EMPIRE">
+<meta name="twitter:description" content="一軒のホテルから、世界一のホテルグループへ。完全ターン制のホテル経営シミュレーション。">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "HOTEL EMPIRE",
+  "operatingSystem": "iOS 15.0以降",
+  "applicationCategory": "GameApplication",
+  "url": "https://hsmty1.github.io/hotelempire/",
+  "description": "一軒のホテルから世界一のホテルグループを目指す、完全ターン制の経営シミュレーション。客室の値段を決め、人を育て、ブランドを作り、新築で増やしていきます。",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "JPY" }
+}
+</script>
+
+<style>
+/* ゲーム本体が「漆黒＋金」（夜のラウンジ）なので、このページも常時ダークで揃える。
+   金は差し色。塗りつぶしに使わず、線と数字・見出しの小さな印にとどめる（本体で金を塗るのは「次の月へ」だけ）。 */
+:root{
+  color-scheme:dark;
+  --bg:#0E0C0B; --surface:#181513; --surface-2:#221E1B;
+  --text:#F1EDE8; --muted:#BDB4AB; --dim:#968B81;
+  --line:rgba(201,162,75,.14); --line-2:rgba(201,162,75,.30);
+  --gold:#C9A24B; --gold-2:#E2BE6A; --gold-soft:rgba(201,162,75,.10); --link:#E2BE6A;
+  --shadow:0 1px 1px rgba(0,0,0,.25),0 8px 22px rgba(0,0,0,.35);
+  --maxw:1000px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Helvetica Neue",Arial,sans-serif;
+  line-height:1.85;font-size:16px;-webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--link)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+section{padding:44px 0}
+.sec-head{margin:0 0 22px}
+.sec-head .eyebrow{
+  display:inline-block;font-size:11px;font-weight:800;letter-spacing:.12em;
+  color:var(--gold-2);border:1px solid var(--gold);border-radius:999px;padding:2px 12px;margin-bottom:10px;
+}
+h2{font-size:clamp(21px,4.6vw,28px);margin:0 0 6px;letter-spacing:.01em;line-height:1.5}
+.sec-head p{margin:0;color:var(--muted);font-size:14.5px}
+
+/* ── ヒーロー（画像は使わない。夜空に金の灯りを薄く敷く） ── */
+.hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line-2);
+  background:
+    radial-gradient(70% 60% at 50% 0%,rgba(201,162,75,.16),transparent 70%),
+    linear-gradient(180deg,#14110F 0%,var(--bg) 100%)}
+.hero-in{position:relative;padding:62px 0 48px;text-align:center}
+.hero img.icon{width:108px;height:108px;border-radius:24px;margin:0 auto 20px;box-shadow:var(--shadow)}
+.hero h1{font-size:clamp(34px,8.4vw,60px);margin:0 0 8px;font-weight:900;letter-spacing:.04em;line-height:1.15}
+.hero .catch{margin:0 0 6px;font-size:clamp(15px,3.6vw,19px);font-weight:700;color:var(--gold-2)}
+.hero .sub{margin:0 auto;max-width:34em;color:var(--muted);font-size:14.5px;text-wrap:balance}
+.soon{display:inline-block;margin:24px 16px 0;max-width:calc(100% - 32px);box-sizing:border-box;padding:10px 18px;line-height:1.6;border:1.5px solid var(--gold);color:var(--gold-2);border-radius:12px;font-weight:700;font-size:15px}
+.soon span{color:var(--muted)}
+.hero .note{margin:12px 0 0;font-size:12.5px;color:var(--dim)}
+
+/* ── 遊び方 ── */
+.steps{display:grid;gap:12px;grid-template-columns:1fr}
+@media(min-width:720px){.steps{grid-template-columns:repeat(4,1fr)}}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow)}
+.step .n{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:12px;font-weight:800;color:var(--gold);letter-spacing:.1em}
+.step h3{margin:4px 0 4px;font-size:16px}
+.step p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.7}
+
+/* ── できること ── */
+.feats{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:720px){.feats{grid-template-columns:repeat(2,1fr)}}
+.feat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;
+  border-left:3px solid var(--gold);box-shadow:var(--shadow)}
+.feat h3{margin:0 0 5px;font-size:16.5px}
+.feat p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.75}
+
+/* ── 料金 ── */
+.plans{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:720px){.plans{grid-template-columns:repeat(2,1fr)}}
+.plan{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:var(--shadow)}
+.plan.pro{border-color:var(--gold);background:radial-gradient(120% 90% at 50% 0%,var(--gold-soft),transparent 70%),var(--surface)}
+.plan h3{margin:0 0 2px;font-size:18px}
+.plan .price{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:13px;color:var(--gold-2);margin:0 0 10px}
+.plan ul{margin:0;padding-left:1.15em}
+.plan li{font-size:13.5px;color:var(--muted);margin-bottom:5px;line-height:1.7}
+.plan li b{color:var(--text)}
+.plan .foot{margin:10px 0 0;font-size:12.5px;color:var(--dim)}
+
+/* ── よくある質問 ── */
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;
+  padding:14px 18px;margin-bottom:10px}
+summary{cursor:pointer;font-weight:700;font-size:15px;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary:before{content:"＋ ";color:var(--gold);font-weight:800}
+details[open] summary:before{content:"− "}
+details p{margin:10px 0 0;font-size:13.5px;color:var(--muted);line-height:1.8}
+details p:last-child{margin-bottom:2px}
+details b{color:var(--text)}
+
+/* ── 締め ── */
+.cta{text-align:center;border-top:1px solid var(--line-2);
+  background:radial-gradient(90% 120% at 50% 0%,var(--gold-soft),transparent 70%)}
+.cta h2{margin-bottom:16px}
+footer{padding:32px 0 52px;text-align:center;color:var(--dim);font-size:13px;border-top:1px solid var(--line-2)}
+footer a{color:var(--muted)}
+footer .back{display:inline-block;margin-bottom:10px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-in wrap">
+    <img class="icon" src="assets/icon.png" alt="" width="108" height="108">
+    <h1>HOTEL EMPIRE</h1>
+    <p class="catch">一軒のホテルから、世界一のホテルグループへ。</p>
+    <p class="sub">客室の値段を決め、人を育て、ブランドを作り、新築で増やしていく。<br>
+      建てる BUILD EMPIRE、持つ CITY EMPIRE に続く EMPIRE シリーズ第3弾。今度は運営する側の経営シミュレーションです。</p>
+    <p class="soon">公開準備中<br><span style="font-weight:500;font-size:13px">まだ App Store では公開していません（近日公開予定）</span></p>
+    <p class="note">iPhone・iPad対応／iOS 15.0以降／基本プレイ無料／日本語・English</p>
+  </div>
+</header>
+
+<main>
+
+<section class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">あそびかた</span>
+    <h2>ひと月ずつ、グループを大きくしていく</h2>
+    <p>リアルタイムで進むものは何もありません。「次の月へ」を押したときだけ時間が動きます。</p>
+  </div>
+  <div class="steps">
+    <div class="step"><div class="n">01</div><h3>買う</h3>
+      <p>売りに出たホテルを、売主の事情を読み、交渉して手に入れます。</p></div>
+    <div class="step"><div class="n">02</div><h3>運営</h3>
+      <p>客室の値段を決めて稼働率を上げ、総支配人と社員を育てます。</p></div>
+    <div class="step"><div class="n">03</div><h3>増やす</h3>
+      <p>自社ブランドを作り、新築を企画して出店します。</p></div>
+    <div class="step"><div class="n">04</div><h3>広げる</h3>
+      <p>賃借・運営受託・フランチャイズで、自分のお金を使わずに軒数を増やします。</p></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">とくちょう</span>
+    <h2>売上の芯は、客室単価 × 稼働率</h2>
+  </div>
+  <div class="feats">
+    <div class="feat"><h3>今夜の部屋は、今夜しか売れない</h3>
+      <p>値段を上げれば客は減り、下げれば単価が落ちます。売れ残った部屋は二度と売れません。景気と訪日客（為替）が波を打ち、季節で客足が変わる中で、ホテルごとの釣り合いを探します。</p></div>
+    <div class="feat"><h3>経営の形は4つ</h3>
+      <p>自分で持つ「所有直営」、建物を借りる「賃借」、オーナーから運営を任される「運営受託」、加盟店を募る「フランチャイズ」。段が上がるほど、自分のお金を使わずに客室を増やせます。</p></div>
+    <div class="feat"><h3>格は6段階、洋と和</h3>
+      <p>格1のエコノミーから、ビジネス、アッパー、ラグジュアリー、超高級、そして完全会員制まで。洋のホテルと和の旅館があります。</p></div>
+    <div class="feat"><h3>新築は、企画から開業まで</h3>
+      <p>場所と市場を調べ、格・室数・ブランドを決め、誰のお金で建てるかを選び、施工会社の相見積を取って開業します。外観は6案から選べます。</p></div>
+    <div class="feat"><h3>自社ブランドを育てる</h3>
+      <p>ブランドを作り、大浴場やスパなどの「売り」を決め、広告で認知度を上げます。買ったホテルもブランドに掛け替えられます。</p></div>
+    <div class="feat"><h3>格付けの星と、宴会場</h3>
+      <p>年に1度、ホテルガイドが星を発表します。星には評判だけでなく、腕のいい料理長と総支配人が要ります。宴会場を造れば、婚礼で売るか法人宴会で売るかを選べます。</p></div>
+    <div class="feat"><h3>近所の競合、幹部の引き抜き合戦</h3>
+      <p>自社のホテルの近くに、他社が開業を予告してきます。売上が見込めなければ、相手は撤退していきます。腕のいい総支配人と料理長には他社から声がかかり、逆に他社の幹部を引き抜くこともできます。</p></div>
+    <div class="feat"><h3>会員・上場・M&amp;A・海外</h3>
+      <p>会員プログラム、株式上場、M&amp;A。海外は7地域で、南半球は季節が逆。国内と海外を両方持つと、為替の振れが打ち消し合います。</p></div>
+    <div class="feat"><h3>台風・地震には、保険で備える</h3>
+      <p>台風や地震は実在の地名を中心に、まわりの宿を休業させます。保険に入るかどうかも経営の判断です。</p></div>
+    <div class="feat"><h3>地名は実在、地図に並ぶ</h3>
+      <p>国内と海外の実在の地名の地図に、あなたのホテルが格の色のピンで並びます。</p></div>
+    <div class="feat"><h3>206社と競い、頂点へ</h3>
+      <p>世界ランキングの206社を下から抜いていきます。世界一になっても、上位の会社の追い上げと新興勢力が待っています。実績は52個。</p></div>
+    <div class="feat"><h3>数字が、ちゃんと合う</h3>
+      <p>減価償却・法人税・キャッシュフローまで入った収支報告書。ホテルごとの収支も見られます。課金に関係なく全部見られます。</p></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="sec-head">
+    <span class="eyebrow">りょうきん</span>
+    <h2>基本無料で、最後まで遊べます</h2>
+    <p>月額はありません。買い切りのプレミアムは、一度のお支払いで以後ずっとお使いいただけます。</p>
+  </div>
+  <div class="plans">
+    <div class="plan">
+      <h3>無料</h3>
+      <p class="price">バナー広告あり</p>
+      <ul>
+        <li><b>STAGE6・世界一まで到達できます。</b>遊べる範囲に制限はありません</li>
+        <li>「どこに出すか・いくらで売るか・何人で回すか・誰に任せるか」という本筋の判断はすべて無料</li>
+        <li>収支報告書も、課金に関係なく全部見られます</li>
+      </ul>
+    </div>
+    <div class="plan pro">
+      <h3>プレミアム（やり込みモード）</h3>
+      <p class="price">買い切り／広告なし</p>
+      <ul>
+        <li><b>作り込む</b>：ホテルの改名・幹部の名前と役職名（洋と和は別々に）・ブランド名を自由に・新築の外観の B案</li>
+        <li><b>値付けを詰める</b>：平日と土日祝の値段を別々に・料飲や売店などの付帯の単価</li>
+        <li><b>会員プログラム</b>：ランク・還元率・特典・提携・会員限定料金（STAGE4〜）</li>
+        <li><b>上場</b>：配当性向と自社株買い</li>
+      </ul>
+      <p class="foot">有利な出物や有利な融資、先出しの情報が出るものではありません。判断をより細かく詰めるための層です。</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap" id="support">
+  <div class="sec-head">
+    <span class="eyebrow">こまったとき</span>
+    <h2>よくある質問</h2>
+  </div>
+
+  <details>
+    <summary>プレミアムは買い直しになりますか？</summary>
+    <p>なりません。同じApple IDであれば、画面右上の <b>☰ メニュー →「⭐ プレミアム」</b>を開き、<b>「購入を復元」</b>を押すと元に戻ります。起動のたびに App Store と照らし合わせているので、多くの場合は開くだけで戻ります。月額課金ではないので、更新料もかかりません。</p>
+  </details>
+
+  <details>
+    <summary>機種変更したら引き継げますか？</summary>
+    <p>同じApple IDでiCloudにサインインしていれば、<b>セーブはiCloud経由で新しい端末へ引き継がれます</b>。新しい端末では、タイトル画面のまま数秒お待ちください。セーブが届くと、セーブデータの一覧に会社が並びます。</p>
+    <p>iCloudにサインインしていない場合は引き継げません。</p>
+  </details>
+
+  <details>
+    <summary>会社はいくつ持てますか？ 消すには？</summary>
+    <p>セーブ枠は3つで、<b>3社まで並べて持てます</b>。遊んでいる途中でタイトルに戻るときは、<b>☰ メニュー →「保存してタイトルへ」</b>を押してください。</p>
+    <p>会社を消すときは、タイトル画面の<b>「📁 セーブデータ」</b>を開き、消したい会社の <b>🗑</b> を押します。端末のセーブと iCloud の写しの両方が消え、元には戻せません。</p>
+  </details>
+
+  <details>
+    <summary>英語で遊べますか？（English）</summary>
+    <p>はい。最初は端末の言語に合わせて表示されます。切り替えるときは、画面右上の <b>☰ メニュー → 🔧 設定 →「言語 / Language」</b>を押してください。日本語と English が切り替わります。セーブは切り替える直前に保存するので、進行は消えません。</p>
+    <p>Yes. The game follows your device language. To switch, tap <b>☰ Menu → 🔧 Settings → "言語 / Language"</b>.</p>
+  </details>
+
+  <details>
+    <summary>進行中のデータは消えませんか？</summary>
+    <p>進行は自動で保存しています。書き込み先は端末のアプリ専用の保存領域で、さらに1世代前の控えを残しています。保存に失敗したときはアプリが画面でお知らせします。</p>
+    <p>それでも進行が失われた場合は、ページ下部の<b>お問い合わせ</b>からご連絡ください。</p>
+  </details>
+
+  <details>
+    <summary>広告は消せますか？</summary>
+    <p>広告は画面の下のバナーだけです。買い切りのプレミアムをご購入いただくと、バナー広告が消えます。動画広告はありません。</p>
+  </details>
+
+  <details>
+    <summary>ほかのプレイヤーと競えますか？</summary>
+    <p>はい。<b>☰ メニュー →「世界のプレイヤーと競う」</b>から、Game Center のランキングで傘下売上・自己資本・在籍人数・時価総額・STAGE6 到達の速さを比べられます。難易度ごとの表で、「ふつう」以上が対象です。参加は任意で、サインインしなくてもゲームはすべて遊べます。</p>
+  </details>
+
+  <details>
+    <summary>進行が止まってしまいました</summary>
+    <p>まずアプリを一度終了して開き直してください。それでも直らないときは、<b>お使いの機種・そのとき開いていた画面・押しても反応しないボタン</b>を添えてご連絡いただけると、こちらで同じ状態を作って調べられます。</p>
+  </details>
+
+  <details>
+    <summary>要望を送りたいのですが</summary>
+    <p>ぜひお願いします。ページ下部の<b>お問い合わせ</b>からお送りください。</p>
+  </details>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2>あなたの手で、ホテル帝国を。</h2>
+    <p class="soon">公開準備中<br><span style="font-weight:500;font-size:13px">まだ App Store では公開していません（近日公開予定）</span></p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="back"><a href="../">← K.H.App のアプリ一覧へ</a></p>
+    <p><a href="privacy/">プライバシーポリシー</a>（<a href="privacy/en/">English</a>）　|　<a href="mailto:ex241126yr241126@gmail.com">お問い合わせ</a></p>
+    <p>© K.H.App</p>
+  </div>
+</footer>
+
+</body>
+</html>
